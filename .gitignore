@@ -1,0 +1,5 @@
+# output files
+output/*.txt
+
+# Pycache
+__pycache__/
