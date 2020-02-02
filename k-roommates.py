@@ -12,7 +12,7 @@ def solve_m_roommates(n, m, preferences):
   print(f"Basic solution: {min_score}")
   no_progress_round = 0
 
-  while no_progress_round < 30:
+  while no_progress_round < 100:
     a1 = randint(0, n - 1)
     a2 = randint(0, n - 1)
 
@@ -31,7 +31,7 @@ def solve_m_roommates(n, m, preferences):
 
 
 if __name__ == "__main__":
-  n, m, preferences = utils.get_preferences("data/sample_2.txt")
+  n, m, _, preferences = utils.get_preferences("data/sample_2.txt")
 
   assert n % m == 0
 

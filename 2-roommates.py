@@ -29,7 +29,7 @@ def solve_2_roommates(n, m, preferences):
 
 
 if __name__ == "__main__":
-  n, m, preferences = utils.get_preferences("data/sample_2.txt")
+  n, m, _, preferences = utils.get_preferences("data/sample_2.txt")
 
   assert n % 2 == 0
 
