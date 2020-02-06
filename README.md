@@ -26,5 +26,5 @@ I didn't really have any better idea for a greedy algorithm, so I did a random o
 ## Random algorithm for 2-roommates and k-roommates
 The goal is to start from a completly random attribution and then do 2-permutation until we cannot improve the solution. The score is way better than a full random algorithm, and we can still run the algorithm again if we don't like the local optimum. We reach a local optimum in less than 0.2s with a common computer for `n=100`.
 
-## Algorithm for the 2-k-roommates
+## Algorithm for the k1-k2-roommates
 In this problem, we have to decide the size of the groups and the attribution of the solution. The first part here is to randomly choose group sizes with `generate_group_sizes`. Then we take a random solution, and we try to reach the local optimum thanks to 2-permutation and 3-permutation. In order to have a better solution, we try multiple random solution for the same group sizes and we try multiple random group sizes until we cannot do better. We reach a local optimum in about a minute.
