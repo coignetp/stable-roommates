@@ -3,6 +3,9 @@ from random import randint, shuffle
 
 
 def generate_group_sizes(n, m_min, m_max):
+  """ Generate different group sizes g1 .. gq between m_min
+  and m_max where g1 + .. + gq = n """
+
   if m_min == m_max:
     if n % m_min == 0:
       return [m_min] * (n // m_min)
@@ -22,12 +25,14 @@ def generate_group_sizes(n, m_min, m_max):
     if attribution is not None:
       return [group_size] + attribution
 
-
-
   return None
 
 
 def create_solution(n, preferences, group_sizes):
+  """ Create a solution from the preferences and the group sizes given.
+  Start from a random solution and do 2-permutation until no 2-permutation
+  can improve the score. Then do a 3-permutation to keep on improving the score. """
+
   solution = list(range(0, n))
   shuffle(solution)
   actual_score = utils.compute_score_att(preferences, solution, group_sizes)
