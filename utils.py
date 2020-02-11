@@ -1,4 +1,5 @@
 from math import inf
+from random import shuffle
 
 def compute_score(preferences, solution):
   """ Compute the score of a solution.
@@ -47,7 +48,7 @@ def get_preferences(filename):
 
     for i in range(n):
       line = file.readline()
-      preferences[i] = [int(data) for data in line.split(' ')]
+      preferences[i] = [int(data) for data in line.split()]
 
     return n, m_min, m_max, preferences
 
@@ -69,3 +70,62 @@ def save_solution_att(filename, solution, group_sizes):
       file.write("\n")
     
       i += group
+
+##########################################
+# Generate data with the ampl solver format
+##########################################
+def generate_random_table(n):
+  table = [[i for i in range(1, n)] for _ in range(n)]
+
+  for i in range(len(table)):
+    shuffle(table[i])
+    table[i].insert(i, 0)
+
+  return table
+
+def generate_ampl_dat(filename, n, k1, k2, table=None):
+  if table is None:
+    table = generate_random_table(n)
+
+  with open(filename, "w") as file:
+    file.write(f"param N := {n};\n")
+    file.write(f"param K1 := {k1};\n")
+    file.write(f"param K2 := {k2};\n")
+    file.write("\nparam Preferences: ")
+
+    for i in range(1, n+1):
+      file.write(f"{i} ")
+    
+    file.write(":=")
+
+    for i in range(n):
+      file.write(f"\n\t{i + 1}\t")
+
+      for j in range(n):
+        file.write(f"{table[i][j]} ")
+    file.write(";")
+
+def generate_python_dat(filename, n, k1, k2, table=None):
+  if table is None:
+    table = generate_random_table(n)
+
+  with open(filename, "w") as file:
+    file.write(f"{n}\n")
+    file.write(f"{k1} {k2}\n")
+
+    for i in range(n):
+      for j in range(1, n):
+        # if table[i][j] != 0:
+        ind = table[i].index(j)
+          # ind = (ind) if ind < i else (ind - 1)
+        file.write(f"{ind} ")
+      file.write("\n")
+
+
+if __name__ == '__main__':
+  n = 100
+  k1 = 2
+  k2 = 2
+  table = generate_random_table(n)
+  generate_ampl_dat("ampl/n-100.dat", n, k1, k2, table)
+  generate_python_dat("data/sample_100.txt", n, k1, k2, table)

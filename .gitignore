@@ -3,3 +3,6 @@ output/*.txt
 
 # Pycache
 __pycache__/
+
+# vscode
+.vscode

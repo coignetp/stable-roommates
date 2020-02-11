@@ -1,6 +1,12 @@
 import utils
 from random import randint, shuffle
 
+parameters = {
+  "group_sizes_conv": 20,
+  "create_solution_conv": 20,
+  "3_permutation_conv": 20,
+  "2_permutation_conv": 20,
+}
 
 def generate_group_sizes(n, m_min, m_max):
   """ Generate different group sizes g1 .. gq between m_min
@@ -20,6 +26,7 @@ def generate_group_sizes(n, m_min, m_max):
 
   while len(l) > 0:
     group_size = l.pop()
+    # TODO: improve this
     attribution = generate_group_sizes(n - group_size, m_min, min(m_max, group_size))
 
     if attribution is not None:
@@ -40,8 +47,8 @@ def create_solution(n, preferences, group_sizes):
   no_chgt = 0
   no_chgt_3_switch = 0
 
-  while no_chgt_3_switch < 200:
-    while no_chgt < 200:
+  while no_chgt_3_switch < parameters["3_permutation_conv"]:
+    while no_chgt < parameters["2_permutation_conv"]:
       a1 = randint(0, n - 1)
       a2 = randint(0, n - 1)
 
@@ -92,11 +99,11 @@ def solve_m_roommates(n, m_min, m_max, preferences):
   no_chgt = 0
   no_chgt_group_size = 0
 
-  while no_chgt_group_size < 200:
+  while no_chgt_group_size < parameters["group_sizes_conv"]:
     new_group_size = generate_group_sizes(n, m_min, m_max)
     no_chgt_group_size += 1
 
-    while no_chgt < 200:
+    while no_chgt < parameters["create_solution_conv"]:
       new_solution, new_score = create_solution(n, preferences, new_group_size)
       no_chgt += 1
 

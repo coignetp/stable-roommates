@@ -28,3 +28,16 @@ The goal is to start from a completly random attribution and then do 2-permutati
 
 ## Algorithm for the k1-k2-roommates
 In this problem, we have to decide the size of the groups and the attribution of the solution. The first part here is to randomly choose group sizes with `generate_group_sizes`. Then we take a random solution, and we try to reach the local optimum thanks to 2-permutation and 3-permutation. In order to have a better solution, we try multiple random solution for the same group sizes and we try multiple random group sizes until we cannot do better. We reach a local optimum in about a minute.
+
+
+# Ampl solution
+In the ampl folder:
+
+```
+model k-roommates.mod;
+data k-roommates.dat;
+printf "N=%i\n", N > ../output/ampl_1.txt;
+display attributions >> ../output/ampl_1.txt;
+```
+
+You can compute the score with `python3 ampl_score.py output/ampl_1.txt data/sample_1.txt`.
