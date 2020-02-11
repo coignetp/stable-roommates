@@ -2,8 +2,6 @@ import utils
 import sys
 
 if __name__ == "__main__":
-  print(sys.argv)
-  # filename = "output/ampl_1.txt"
   filename = sys.argv[1]
   preferences = sys.argv[2]
 

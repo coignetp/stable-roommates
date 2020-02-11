@@ -115,9 +115,7 @@ def generate_python_dat(filename, n, k1, k2, table=None):
 
     for i in range(n):
       for j in range(1, n):
-        # if table[i][j] != 0:
         ind = table[i].index(j)
-          # ind = (ind) if ind < i else (ind - 1)
         file.write(f"{ind} ")
       file.write("\n")
 
