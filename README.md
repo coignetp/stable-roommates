@@ -37,7 +37,7 @@ In the ampl folder:
 model k-roommates.mod;
 data k-roommates.dat;
 printf "N=%i\n", N > ../output/ampl_1.txt;
-display attributions >> ../output/ampl_1.txt;
+printf{(i,j) in Length cross Length} "%d ", attributions[i,j] >> ../output/ampl_1.txt;
 ```
 
 You can compute the score with `python3 ampl_score.py output/ampl_1.txt data/sample_1.txt`.

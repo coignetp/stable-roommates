@@ -12,20 +12,15 @@ if __name__ == "__main__":
 
     n, m, _, preferences = utils.get_preferences(preferences)
 
-    # useless lines
-    _ = file.readline()
-    _ = file.readline()
-
     placed = [False for _ in range(n)]
     solution = []
 
-    for i in range(n):
-      line = file.readline().rstrip("\n").split()
-      
+    line = file.readline().rstrip("\n").split()
+    for i in range(n):      
       if not placed[i]:
         solution.append([])
         for j in range(n):
-          if line[j + 1] == '1':
+          if line[(i * n) + j] == '1':
             placed[j] = True
             solution[-1].append(j)
 
