@@ -20,7 +20,8 @@ if __name__ == "__main__":
       if not placed[i]:
         solution.append([])
         for j in range(n):
-          if line[(i * n) + j] == '1':
+          if line[(i * n) + j] == '1' and not placed[j]:
+            print(f"Placing {j} in {solution[-1]} ({(i*n)+j})")
             placed[j] = True
             solution[-1].append(j)
 

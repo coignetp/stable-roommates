@@ -11,6 +11,7 @@ def compute_score(preferences, solution):
     for i in range(len(group)):
       # Already attributed
       if visited[group[i]]:
+        print(f"{group[i]} already attributed")
         return inf
       visited[group[i]] = True
       for j in range(len(group)):

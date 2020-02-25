@@ -34,10 +34,13 @@ In this problem, we have to decide the size of the groups and the attribution of
 In the ampl folder:
 
 ```
-model k-roommates.mod;
-data k-roommates.dat;
+model 2-roommates.mod;
+data n-10.dat;
 printf "N=%i\n", N > ../output/ampl_1.txt;
 printf{(i,j) in Length cross Length} "%d ", attributions[i,j] >> ../output/ampl_1.txt;
 ```
 
 You can compute the score with `python3 ampl_score.py output/ampl_1.txt data/sample_1.txt`.
+
+# Note
+The files `data/ampl_<n>.txt` and `ampl/n-<n>.dat` have the same data but a different format.

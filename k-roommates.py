@@ -31,7 +31,7 @@ def solve_m_roommates(n, m, preferences):
 
 
 if __name__ == "__main__":
-  n, m, _, preferences = utils.get_preferences("data/sample_20.txt")
+  n, m, _, preferences = utils.get_preferences("data/sample_100.txt")
 
   assert n % m == 0
 
